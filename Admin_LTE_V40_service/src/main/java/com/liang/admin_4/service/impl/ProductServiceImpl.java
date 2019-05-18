@@ -5,6 +5,7 @@
  */
 package com.liang.admin_4.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.liang.admin_4.dao.ProductDao;
 import com.liang.admin_4.domin.Product;
 import com.liang.admin_4.service.ProductService;
@@ -25,11 +26,13 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductDao productDao;
 
+    //添加商品
     @Override
     public void save(Product product) {
         productDao.save(product);
     }
 
+    //查询所有商品
     @Override
     public List<Product> findAll() throws Exception{
         return productDao.findAll();

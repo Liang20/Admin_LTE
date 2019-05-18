@@ -5,6 +5,7 @@
  */
 package com.liang.admin_4.domin;
 
+import com.liang.admin_4.utils.DateUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -32,6 +33,7 @@ public class Product {
 
     public void setId(String id) {
         this.id = id;
+
     }
 
     public String getProductNum() {
@@ -67,6 +69,10 @@ public class Product {
     }
 
     public String getDepartureTimeStr() {
+        if(departureTime != null){
+            departureTimeStr = DateUtils.date2string(departureTime,"yyyy-MM-dd hh:mm:ss");
+        }
+
         return departureTimeStr;
     }
 
@@ -99,10 +105,22 @@ public class Product {
     }
 
     public String getProductStatusStr() {
+
+        if(productStatus != null){
+            // 状态 0 关闭 1 开启
+            if(productStatus==0){
+                productStatusStr="关闭";
+            }
+            if(productStatus==1){
+                productStatusStr="开启";
+            }
+        }
         return productStatusStr;
     }
 
     public void setProductStatusStr(String productStatusStr) {
         this.productStatusStr = productStatusStr;
     }
+
+
 }

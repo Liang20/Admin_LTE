@@ -192,17 +192,17 @@
 			</a>
 				<ul class="treeview-menu">
 
-					<li id="system-setting"><a
+					<li id="system-setting4"><a
 						href="${pageContext.request.contextPath}/user/findAll.do"> <i
 							class="fa fa-circle-o"></i> 用户管理
 					</a></li>
-					<li id="system-setting"><a href="${pageContext.request.contextPath}/role/findAll.do">
+					<li id="system-setting3"><a href="${pageContext.request.contextPath}/role/findAll.do">
 							<i class="fa fa-circle-o"></i> 角色管理
 					</a></li>
-					<li id="system-setting"><a href="${pageContext.request.contextPath}/permission/findAll.do">
+					<li id="system-setting2"><a href="${pageContext.request.contextPath}/permission/findAll.do">
 							<i class="fa fa-circle-o"></i> 资源权限管理
 					</a></li>
-					<li id="system-setting"><a
+					<li id="system-setting1"><a
 						href="${pageContext.request.contextPath}/sysLog/findAll.do"> <i
 							class="fa fa-circle-o"></i> 访问日志
 					</a></li>
@@ -215,11 +215,11 @@
 			</a>
 				<ul class="treeview-menu">
 
-					<li id="system-setting"><a
+					<li id="system-setting5"><a
 						href="${pageContext.request.contextPath}/product/findAll.do">
 							<i class="fa fa-circle-o"></i> 产品管理
 					</a></li>
-					<li id="system-setting"><a
+					<li id="system-setting6"><a
 						href="${pageContext.request.contextPath}/order/findAll.do?page=1&pageSize=3">
 							<i class="fa fa-circle-o"></i> 订单管理
 					</a></li>

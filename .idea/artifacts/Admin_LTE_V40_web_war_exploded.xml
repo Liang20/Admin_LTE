@@ -16,6 +16,9 @@
           <element id="archive" name="Admin_LTE_V4.0_domain-1.0-SNAPSHOT.jar">
             <element id="module-output" name="Admin_LTE_V40_domain" />
           </element>
+          <element id="archive" name="Admin_LTE_V4.0_utils-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="Admin_LTE_V40_utils" />
+          </element>
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.8" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.0.2.RELEASE" />
