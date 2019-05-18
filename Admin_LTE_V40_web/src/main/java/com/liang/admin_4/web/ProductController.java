@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import com.liang.admin_4.domin.Product;
 import com.liang.admin_4.service.ProductService;
 import com.liang.admin_4.utils.CommonsUtils;
+import com.liang.admin_4.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,8 @@ public class ProductController {
                                         int pageSize) throws Exception  {
 
         ModelAndView  mv = new ModelAndView();
+        PageBean productList = productService.findAll(1, 5);
+        System.out.println(productList);
         List<Product> products = productService.findAll();
 
         mv.addObject("products",products);
