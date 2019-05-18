@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Admin_LTE_V40_web:war">
+    <output-path>$PROJECT_DIR$/Admin_LTE_V40_web/target</output-path>
+    <root id="archive" name="Admin_LTE_V4.0_web.war">
+      <element id="artifact" artifact-name="Admin_LTE_V40_web:war exploded" />
+    </root>
+  </artifact>
+</component>

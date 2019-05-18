@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Admin_LTE_V40_dao" />
+        <module name="Admin_LTE_V40_domain" />
+        <module name="Admin_LTE_V40_service" />
+        <module name="Admin_LTE_V40_utils" />
+        <module name="Admin_LTE_V40_web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Admin_LTE_V40" target="1.8" />
+      <module name="Admin_LTE_V40_dao" target="1.8" />
+      <module name="Admin_LTE_V40_domain" target="1.8" />
+      <module name="Admin_LTE_V40_service" target="1.8" />
+      <module name="Admin_LTE_V40_utils" target="1.8" />
+      <module name="Admin_LTE_V40_web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
