@@ -244,7 +244,7 @@
 								<tbody>
 
 
-									<c:forEach items="${products}" var="product">
+									<c:forEach items="${pageBeanList.list}" var="product">
 
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
@@ -278,7 +278,7 @@
 					<div class="box-footer">
 						<div class="pull-left">
 							<div class="form-group form-inline">
-								总共${pageInfo.pages}页，共${pageInfo.total}条数据。 <%--每页 <select class="form-control">
+								总共${pageBeanList.totalPage}页，共${pageBeanList.totalCount}条数据。 <%--每页 <select class="form-control">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -291,18 +291,24 @@
 						<div class="box-tools pull-right">
 							<ul class="pagination">
 								<li>
-									<a href="${pageContext.request.contextPath}/product/findAll.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+									<a href="${pageContext.request.contextPath}/product/findAll.do?page=1&size=${pageBeanList.pageSize}" aria-label="Previous">首页</a>
 								</li>
-								<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+								<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageBeanList.currentPage-1}&size=${pageBeanList.pageSize}">上一页</a></li>
 
-								<c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
-									<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
+								<c:forEach begin="1" end="${pageBeanList.totalPage}" var="pageNum">
+									<c:if test="${pageBeanList.currentPage==pageNum}">
+										<li><a style="background: #3b8ab8" href="#">${pageNum}</a></li>
+									</c:if>
+									<c:if test="${pageBeanList.currentPage!=pageNum}">
+										<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageNum}&size=${pageBeanList.pageSize}">${pageNum}</a></li>
+									</c:if>
+
 								</c:forEach>
 
 
-								<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+								<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageBeanList.currentPage+1}&size=${pageBeanList.pageSize}">下一页</a></li>
 								<li>
-									<a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+									<a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageBeanList.totalPage}&size=${pageBeanList.pageSize}" aria-label="Next">尾页</a>
 								</li>
 							</ul>
 						</div>
