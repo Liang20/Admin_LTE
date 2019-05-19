@@ -5,17 +5,18 @@
  */
 package com.liang.admin_4.dao;
 
+import com.liang.admin_4.domin.Product;
 import com.liang.admin_4.domin.UserInfo;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * @author Liang
  * @date 2019/5/18 21:28
  */
 public interface UserDao {
+    //登录
     @Select("select * from users where username=#{username}")
     @Results({
             @Result(id = true, property = "id", column = "id"),
@@ -27,4 +28,16 @@ public interface UserDao {
             @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "com.liang.admin_4.dao.RoleDao.findRoleByUserId"))
     })
     public UserInfo findByUsername(String username) throws Exception;
+
+    //查询总记录数
+    @Select("select count(*) from users")
+    int getTotalCount () throws Exception;
+
+    //分页查询
+    @Select("select * from users limit #{Start},#{PageSize}")
+    List<UserInfo> getPageList(@Param("Start")int Start, @Param("PageSize") int PageSize) throws Exception;
+
+    //添加用户
+    @Insert("insert into users(id,email,username,password,phoneNum,status) values(#{id},#{email},#{username},#{password},#{phoneNum},#{status})")
+    void save(UserInfo userInfo);
 }

@@ -6,14 +6,18 @@
 package com.liang.admin_4.service.impl;
 
 import com.liang.admin_4.dao.UserDao;
+import com.liang.admin_4.domin.Product;
 import com.liang.admin_4.domin.Role;
 import com.liang.admin_4.domin.UserInfo;
 import com.liang.admin_4.service.UserService;
+import com.liang.admin_4.utils.CommonsUtils;
+import com.liang.admin_4.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +33,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //登录
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = null;
@@ -53,5 +60,25 @@ public class UserServiceImpl implements UserService {
             list.add(new SimpleGrantedAuthority(role.getRoleName()));
         }
         return list;
+    }
+
+
+    //分页查询
+    @Override
+    public PageBean findAll(int page, int pageSize) throws Exception {
+        int totalcount = userDao.getTotalCount();
+        PageBean pageBean = new PageBean(page,totalcount,pageSize);
+        List<UserInfo>  userInfoList = userDao.getPageList(pageBean.getStart(),pageSize);
+        pageBean.setList(userInfoList);
+        return pageBean;
+    }
+
+    //添加用户
+    @Override
+    public void save(UserInfo userInfo) throws Exception{
+        String id = CommonsUtils.getUUID();
+        userInfo.setId(id);
+        userInfo.setPassword(bCryptPasswordEncoder.encode(userInfo.getPassword()));
+        userDao.save(userInfo);
     }
 }

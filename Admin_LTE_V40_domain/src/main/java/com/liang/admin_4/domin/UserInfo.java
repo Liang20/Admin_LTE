@@ -70,6 +70,11 @@ public class UserInfo {
     }
 
     public String getStatusStr() {
+        if(status == 1){
+            statusStr = "已开启";
+        }else if(status == 0){
+            statusStr = "已停用";
+        }
         return statusStr;
     }
 

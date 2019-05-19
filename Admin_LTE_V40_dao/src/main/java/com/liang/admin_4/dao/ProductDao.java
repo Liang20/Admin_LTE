@@ -36,4 +36,7 @@ public interface ProductDao {
     //分页查询
     @Select("select * from product limit #{Start},#{PageSize}")
     List<Product> getPageList(@Param("Start")int Start, @Param("PageSize") int PageSize) throws Exception;
+
+
+
 }
