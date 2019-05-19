@@ -43,8 +43,8 @@ public class ProductController {
     @RequestMapping("/findAll.do")
     @RolesAllowed("ADMIN")
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue =
-            "1") int page, @RequestParam(name = "pageSize", required = true, defaultValue = "5")
-                                        int pageSize) throws Exception  {
+            "1") Integer page, @RequestParam(name = "pageSize", required = true, defaultValue = "5")
+                                        Integer pageSize) throws Exception  {
 
         ModelAndView  mv = new ModelAndView();
         PageBean pageBeanList = productService.findAll(page, pageSize);
