@@ -35,18 +35,15 @@ public class ProductServiceImpl implements ProductService{
     }
 
     //查询所有商品
-    @Override
+   /* @Override
     public List<Product> findAll() throws Exception{
         return productDao.findAll();
-    }
+    }*/
     //查询所有商品
     @Override
     public PageBean findAll(int page,int pageSize ) throws Exception{
         int totalcount = productDao.getTotalCount();
         PageBean pageBean = new PageBean(page,totalcount,pageSize);
-        System.out.println(totalcount);
-        System.out.println(pageBean.getStart());
-        System.out.println(pageSize);
         List<Product>  productList = productDao.getPageList(pageBean.getStart(),pageSize);
         pageBean.setList(productList);
         return pageBean;

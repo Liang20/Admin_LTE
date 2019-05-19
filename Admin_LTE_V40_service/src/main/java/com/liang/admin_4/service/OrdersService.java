@@ -6,6 +6,7 @@
 package com.liang.admin_4.service;
 
 import com.liang.admin_4.domin.Orders;
+import com.liang.admin_4.utils.PageBean;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface OrdersService {
 
-    List<Orders> findAll() throws Exception;
+    PageBean findAll(int page, int pageSize) throws Exception;
 
     Orders findById(String id) throws Exception;
 }

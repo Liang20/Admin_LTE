@@ -46,13 +46,7 @@ public class ProductController {
 
         ModelAndView  mv = new ModelAndView();
         PageBean pageBeanList = productService.findAll(page, pageSize);
-        System.out.println(pageBeanList);
-        System.out.println(pageBeanList.getCurrentPage());
-        System.out.println(pageBeanList.getList());
-        System.out.println(pageBeanList.getPageSize());
-        System.out.println(pageBeanList.getTotalCount());
-        System.out.println(pageBeanList.getTotalPage());
-        List<Product> products = productService.findAll();
+       // List<Product> products = productService.findAll();
 
         mv.addObject("pageBeanList",pageBeanList);
         mv.setViewName("product-list");

@@ -8,7 +8,9 @@ package com.liang.admin_4.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.liang.admin_4.dao.OrdersDao;
 import com.liang.admin_4.domin.Orders;
+import com.liang.admin_4.domin.Product;
 import com.liang.admin_4.service.OrdersService;
+import com.liang.admin_4.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +28,12 @@ public class OrdersServiceImpl implements OrdersService {
     private OrdersDao ordersDao;
 
     @Override
-    public List<Orders> findAll() throws Exception {
-        return ordersDao.findAll();
+    public PageBean findAll(int page, int pageSize) throws Exception {
+        int totalcount = ordersDao.getTotalCount();
+        PageBean pageBean = new PageBean(page,totalcount,pageSize);
+        List<Orders>  productList = ordersDao.getPageList(pageBean.getStart(),pageSize);
+        pageBean.setList(productList);
+        return pageBean;
     }
 
     @Override

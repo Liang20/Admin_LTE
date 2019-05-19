@@ -6,6 +6,7 @@
 package com.liang.admin_4.dao;
 
 import com.liang.admin_4.domin.Orders;
+import com.liang.admin_4.domin.Product;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -15,7 +16,9 @@ import java.util.List;
  * @date 2019/5/18 22:32
  */
 public interface OrdersDao {
-    @Select("select * from orders")
+
+    //分页查询
+    @Select("select * from orders limit #{Start},#{PageSize}")
     @Results({
             @Result(id=true,column = "id",property = "id"),
             @Result(column = "orderNum",property = "orderNum"),
@@ -27,7 +30,12 @@ public interface OrdersDao {
             @Result(column = "productId",property = "product",one = @One(select =
                     "com.liang.admin_4.dao.ProductDao.findById"))
     })
-    List<Orders> findAll() throws Exception;
+    List<Orders> getPageList(@Param("Start")int Start, @Param("PageSize") int PageSize) throws Exception;
+
+    //查询总记录数
+    @Select("select count(*) from orders")
+    int getTotalCount () throws Exception;
+
 
     @Select("select * from orders where id=#{id}")
     @Results({

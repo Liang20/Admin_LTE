@@ -8,6 +8,7 @@ package com.liang.admin_4.web;
 import com.github.pagehelper.PageInfo;
 import com.liang.admin_4.domin.Orders;
 import com.liang.admin_4.service.OrdersService;
+import com.liang.admin_4.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +32,11 @@ public class OrdersController {
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue =
             "1") int page, @RequestParam(name = "pageSize", required = true, defaultValue = "5")
                                         int pageSize) throws Exception {
-        List<Orders> ordersList = ordersService.findAll();
+        PageBean pageBeanList = ordersService.findAll(page,pageSize);
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("orders-list");
-        mv.addObject("ordersList", ordersList);
+        mv.addObject("pageBeanList", pageBeanList);
         return mv;
     }
 
