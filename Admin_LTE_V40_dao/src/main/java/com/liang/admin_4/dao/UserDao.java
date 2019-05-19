@@ -40,4 +40,17 @@ public interface UserDao {
     //添加用户
     @Insert("insert into users(id,email,username,password,phoneNum,status) values(#{id},#{email},#{username},#{password},#{phoneNum},#{status})")
     void save(UserInfo userInfo);
+
+    //查询指定ID的用户
+    @Select("select * from users where id=#{id}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "username", column = "username"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "password", column = "password"),
+            @Result(property = "phoneNum", column = "phoneNum"),
+            @Result(property = "status", column = "status"),
+            @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "com.liang.admin_4.dao.RoleDao.findRoleByUserId"))
+    })
+    UserInfo findById(String id);
 }

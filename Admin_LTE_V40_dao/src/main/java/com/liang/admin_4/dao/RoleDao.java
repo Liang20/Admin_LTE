@@ -6,7 +6,7 @@
 package com.liang.admin_4.dao;
 
 import com.liang.admin_4.domin.Role;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -17,5 +17,21 @@ import java.util.List;
 public interface RoleDao {
     //根据用户id查询出所有对应的角色
     @Select("select * from role where id in (select roleId from users_role where userId=#{userId})")
+    @Results({
+            @Result(id = true, property = "id",column = "id"),
+            @Result(property = "roleName",column = "roleName"),
+            @Result(property = "roleDesc",column = "roleDesc"),
+            @Result(property = "permissions",column = "id" ,javaType = java.util.List.class,
+                    many = @Many(select = "com.liang.admin_4.dao.PermissionDao.findPermissionByRoleId")
+            )
+
+    })
     public List<Role> findRoleByUserId(String userId) throws Exception;
+
+    //查询所有角色
+    @Select("select * from role")
+    public List<Role> findAll()throws Exception;
+
+    @Insert("insert into role(id,roleName,roleDesc) values(#{id},#{roleName},#{roleDesc})")
+    void save(Role role)throws Exception;
 }
