@@ -5,6 +5,7 @@
  */
 package com.liang.admin_4.dao;
 
+import com.liang.admin_4.domin.Permission;
 import com.liang.admin_4.domin.Role;
 import org.apache.ibatis.annotations.*;
 
@@ -34,4 +35,13 @@ public interface RoleDao {
 
     @Insert("insert into role(id,roleName,roleDesc) values(#{id},#{roleName},#{roleDesc})")
     void save(Role role)throws Exception;
+
+    @Select("select * from role where id=#{roleId}")
+    Role findById(String roleId);
+
+    @Select("select * from permission permission where id not in (select  permissionId from role_permission where roleId=#{roleId})")
+    List<Permission> findOtherPermission(String roleId);
+
+    @Insert("insert into role_permission(roleId,permissionId) values(#{roleId},#{permissionId})")
+    void addPermissionToRole(@Param("roleId") String roleId, @Param("permissionId") String permissionId);
 }

@@ -6,6 +6,7 @@
 package com.liang.admin_4.dao;
 
 import com.liang.admin_4.domin.Product;
+import com.liang.admin_4.domin.Role;
 import com.liang.admin_4.domin.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -39,7 +40,7 @@ public interface UserDao {
 
     //添加用户
     @Insert("insert into users(id,email,username,password,phoneNum,status) values(#{id},#{email},#{username},#{password},#{phoneNum},#{status})")
-    void save(UserInfo userInfo);
+    void save(UserInfo userInfo) throws Exception;
 
     //查询指定ID的用户
     @Select("select * from users where id=#{id}")
@@ -52,5 +53,13 @@ public interface UserDao {
             @Result(property = "status", column = "status"),
             @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "com.liang.admin_4.dao.RoleDao.findRoleByUserId"))
     })
-    UserInfo findById(String id);
+    UserInfo findById(String id)throws Exception;
+
+    //根据ID查询未添加的用户
+    @Select("select * from role where id not in (select roleId from users_role where userId=#{userId})")
+    List<Role> findOtherRoles(String userId)throws Exception;
+
+    //给用户添加角色
+    @Insert("insert into users_role(userId,roleId) values(#{userId},#{roleId})")
+    void addRoleToUser(@Param("userId") String userId,@Param("roleId") String roleId)throws  Exception;
 }

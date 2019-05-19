@@ -5,6 +5,7 @@
  */
 package com.liang.admin_4.web;
 
+import com.liang.admin_4.domin.Role;
 import com.liang.admin_4.domin.UserInfo;
 import com.liang.admin_4.service.UserService;
 import com.liang.admin_4.utils.PageBean;
@@ -56,5 +57,25 @@ public class UserController {
         return mv;
     }
 
+    //查询用户未拥有的角色
+    @RequestMapping("/findUserByIdAndAllRole.do")
+    public ModelAndView findUserByIdAndAllRole(@RequestParam(name="id",required = true) String userid) throws Exception{
+        //根据ID查询用户
+        UserInfo userInfo = userService.findById(userid);
+        //根据ID查询未添加的用户
+        List<Role> otherRoles = userService.findOtherRoles(userid);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("user",userInfo);
+        mv.addObject("roleList",otherRoles);
+        mv.setViewName("user-role-add");
+        return mv;
+    }
+
+    //给用户添加角色
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(@RequestParam(name = "userId",required = true) String userId,@RequestParam(name = "ids",required = true) String[] roleIds)throws Exception{
+        userService.addRoleToUser(userId,roleIds);
+        return "redirect:findAll.do";
+    }
 
 }

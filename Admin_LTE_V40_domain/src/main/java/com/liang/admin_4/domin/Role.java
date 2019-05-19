@@ -57,4 +57,15 @@ public class Role {
     public void setUsers(List<UserInfo> users) {
         this.users = users;
     }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id='" + id + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", roleDesc='" + roleDesc + '\'' +
+                ", permissions=" + permissions +
+                ", users=" + users +
+                '}';
+    }
 }

@@ -82,9 +82,25 @@ public class UserServiceImpl implements UserService {
         userDao.save(userInfo);
     }
 
+    //根据ID查询用户
     @Override
     public UserInfo findById(String id) throws Exception {
 
         return userDao.findById(id);
+    }
+
+    //根据ID查询未添加的用户
+    @Override
+    public List<Role> findOtherRoles(String userid) throws Exception{
+        return userDao.findOtherRoles(userid);
+    }
+
+    //给用户添加角色
+    @Override
+    public void addRoleToUser(String userId, String[] roleIds) throws Exception {
+           for (String roleId:roleIds){
+               userDao.addRoleToUser(userId,roleId);
+           }
+
     }
 }
