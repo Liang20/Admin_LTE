@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class ProductController {
 
     //查询全部产品
     @RequestMapping("/findAll.do")
+    @RolesAllowed("ADMIN")
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue =
             "1") int page, @RequestParam(name = "pageSize", required = true, defaultValue = "5")
                                         int pageSize) throws Exception  {
@@ -47,7 +49,6 @@ public class ProductController {
         ModelAndView  mv = new ModelAndView();
         PageBean pageBeanList = productService.findAll(page, pageSize);
        // List<Product> products = productService.findAll();
-
         mv.addObject("pageBeanList",pageBeanList);
         mv.setViewName("product-list");
         return  mv;
