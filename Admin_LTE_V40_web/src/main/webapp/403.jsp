@@ -6,7 +6,7 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>权限不足</title>
+    <title>403 错误页面</title>
     <meta name="description" content="AdminLTE2">
     <meta name="keywords" content="AdminLTE2">
 
@@ -76,7 +76,48 @@
     <!-- 内容区域 -->
     <div class="content-wrapper">
 
-        <h1><center>权限不足！</center></h1>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+
+                <ol class="breadcrumb">
+                    <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li class="active">403 错误</li>
+                </ol>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="error-page">
+                    <h2 class="headline text-red"> 403</h2>
+
+                    <div class="error-content">
+                        <h3><i class="fa fa-warning text-red"></i> Oops! 权限不足！</h3>
+
+                        <p>
+                            你访问的权限不足, 你可以 <a href="${pageContext.request.contextPath}/login.jsp">返回到后台首页</a>或者
+                            <a href="${pageContext.request.contextPath}/logout.do">退出</a>
+                        </p>
+
+                        <%--<form class="search-form">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="搜索">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.input-group -->
+                        </form>--%>
+                    </div>
+                    <!-- /.error-content -->
+                </div>
+                <!-- /.error-page -->
+            </section>
+            <!-- /.content -->
+        </div>
 
     </div>
     <!-- 内容区域 /-->
