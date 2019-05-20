@@ -7,8 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>权限不足</title>
-    <meta name="description" content="AdminLTE2定制版">
-    <meta name="keywords" content="AdminLTE2定制版">
+    <meta name="description" content="AdminLTE2">
+    <meta name="keywords" content="AdminLTE2">
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta

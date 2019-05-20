@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>数据 - AdminLTE2定制版</title>
-<meta name="description" content="AdminLTE2定制版">
-<meta name="keywords" content="AdminLTE2定制版">
+<title>AdminLTE2</title>
+<meta name="description" content="AdminLTE2">
+<meta name="keywords" content="AdminLTE2">
 
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -143,7 +143,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${sysLogs}" var="syslog">
+								<c:forEach items="${pageBeanList.list}" var="syslog">
 									<tr>
 										<td><input name="ids" type="checkbox"></td>
 										<td>${syslog.id}</td>
@@ -191,28 +191,33 @@
 				<div class="box-footer">
 					<div class="pull-left">
 						<div class="form-group form-inline">
-							总共2 页，共14 条数据。 每页 <select class="form-control">
-								<option>10</option>
-								<option>15</option>
-								<option>20</option>
-								<option>50</option>
-								<option>80</option>
-							</select> 条
+							总共${pageBeanList.totalPage}页，共${pageBeanList.totalCount}条数据。
 						</div>
 					</div>
 
 					<div class="box-tools pull-right">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous">首页</a></li>
-							<li><a href="#">上一页</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">下一页</a></li>
-							<li><a href="#" aria-label="Next">尾页</a></li>
-						</ul>
+						<<ul class="pagination">
+						<li>
+							<a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=1&size=${pageBeanList.pageSize}" aria-label="Previous">首页</a>
+						</li>
+						<li><a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageBeanList.currentPage-1}&size=${pageBeanList.pageSize}">上一页</a></li>
+
+						<c:forEach begin="1" end="${pageBeanList.totalPage}" var="pageNum">
+							<c:if test="${pageBeanList.currentPage==pageNum}">
+								<li><a style="background: #3b8ab8" href="#">${pageNum}</a></li>
+							</c:if>
+							<c:if test="${pageBeanList.currentPage!=pageNum}">
+								<li><a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageNum}&size=${pageBeanList.pageSize}">${pageNum}</a></li>
+							</c:if>
+
+						</c:forEach>
+
+
+						<li><a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageBeanList.currentPage+1}&size=${pageBeanList.pageSize}">下一页</a></li>
+						<li>
+							<a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageBeanList.totalPage}&size=${pageBeanList.pageSize}" aria-label="Next">尾页</a>
+						</li>
+					</ul>
 					</div>
 
 				</div>
