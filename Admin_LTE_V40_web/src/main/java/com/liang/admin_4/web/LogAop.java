@@ -118,7 +118,7 @@ public class LogAop {
 
         }
 
-        System.out.println("6");
+
 
     }
 

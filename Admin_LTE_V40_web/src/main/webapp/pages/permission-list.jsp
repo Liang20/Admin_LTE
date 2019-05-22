@@ -138,7 +138,7 @@
 										<th class="sorting_asc">ID</th>
 										<th class="sorting_desc">权限名称</th>
 										<th class="sorting_asc sorting_asc_disabled">URL</th>
-										<th class="text-center">操作</th>
+										<%--<th class="text-center">操作</th>--%>
 									</tr>
 								</thead>
 								<tbody>
@@ -149,23 +149,14 @@
 											<td>${permission.id }</td>
 											<td>${permission.permissionName }</td>
 											<td>${permission.url }</td>
-											<td class="text-center">
-												<a href="${pageContext.request.contextPath}/role/findById.do?id=${permission.id}" class="btn bg-olive btn-xs">详情</a>
-												<a href="${pageContext.request.contextPath}/user/findUserByIdAndAllRole.do?id=${permission.id}" class="btn bg-olive btn-xs">添加角色</a>
-											</td>
+											<%--<td class="text-center">
+												<a href="${pageContext.request.contextPath}/rolesss/findById.do?id=${permission.id}" class="btn bg-olive btn-xs">详情</a>
+												<a href="${pageContext.request.contextPath}/userssss/findUserByIdAndAllRole.do?id=${permission.id}" class="btn bg-olive btn-xs">添加角色</a>
+											</td>--%>
 										</tr>
 									</c:forEach>
 								</tbody>
-								<!--
-                            <tfoot>
-                            <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                            </tr>
-                            </tfoot>-->
+
 							</table>
 							<!--数据列表/-->
 

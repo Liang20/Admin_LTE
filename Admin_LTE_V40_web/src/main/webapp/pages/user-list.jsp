@@ -174,7 +174,7 @@
 					<div class="box-footer">
 						<div class="pull-left">
 							<div class="form-group form-inline">
-								总共${pageBeanList.totalCount}页，共${pageBeanList.totalCount}条数据。
+								总共${pageBeanList.totalPage}页，共${pageBeanList.totalCount}条数据。
 
 							</div>
 						</div>
