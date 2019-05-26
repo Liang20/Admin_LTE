@@ -9,7 +9,7 @@ package com.liang.admin_4.domin;
  * @author Liang
  * @date 2019/5/18 22:29
  */
-public class Member {
+public  class Member {
     private String id;
     private String name;
     private String nickname;
