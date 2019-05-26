@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -131,8 +132,6 @@
 							class="table table-bordered table-striped table-hover dataTable">
 							<thead>
 								<tr>
-									<th class="" style="padding-right: 0px"><input id="selall"
-										type="checkbox" class="icheckbox_square-blue"></th>
 									<th class="sorting_asc">ID</th>
 									<th class="sorting">访问时间</th>
 									<th class="sorting">访问用户</th>
@@ -145,7 +144,6 @@
 							<tbody>
 								<c:forEach items="${pageBeanList.list}" var="syslog">
 									<tr>
-										<td><input name="ids" type="checkbox"></td>
 										<td>${syslog.id}</td>
 										<td>${syslog.visitTimeStr }</td>
 										<td>${syslog.username }</td>
@@ -159,27 +157,6 @@
 
 						</table>
 						<!--数据列表/-->
-
-						<!--工具栏-->
-						<div class="pull-left">
-							<div class="form-group form-inline">
-								<div class="btn-group">
-									<button type="button" class="btn btn-default" title="刷新"
-										onclick="window.location.reload();">
-										<i class="fa fa-refresh"></i> 刷新
-									</button>
-								</div>
-							</div>
-						</div>
-						<div class="box-tools pull-right">
-							<div class="has-feedback">
-								<input type="text" class="form-control input-sm"
-									placeholder="搜索"> <span
-									class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
-						</div>
-						<!--工具栏/-->
-
 
 					</div>
 					<!-- 数据表格 /-->
@@ -196,7 +173,7 @@
 					</div>
 
 					<div class="box-tools pull-right">
-						<<ul class="pagination">
+						<ul class="pagination">
 						<li>
 							<a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=1&size=${pageBeanList.pageSize}" aria-label="Previous">首页</a>
 						</li>

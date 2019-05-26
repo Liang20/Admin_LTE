@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 
@@ -194,6 +195,7 @@
 							<div class="pull-left">
 								<div class="form-group form-inline">
 									<div class="btn-group">
+										<security:authorize access="hasRole('ADMIN')">
 										<button type="button" class="btn btn-default" title="新建"
 											onclick="location.href='${pageContext.request.contextPath}/pages/product-add.jsp'">
 											<i class="fa fa-file-o"></i> 新建
@@ -201,12 +203,14 @@
 										<button type="button" class="btn btn-default" title="删除">
 											<i class="fa fa-trash-o"></i> 删除
 										</button>
+
 										<button type="button" class="btn btn-default" title="开启">
 											<i class="fa fa-check"></i> 开启
 										</button>
 										<button type="button" class="btn btn-default" title="屏蔽">
 											<i class="fa fa-ban"></i> 屏蔽
 										</button>
+										</security:authorize>
 										<button type="button" class="btn btn-default" title="刷新">
 											<i class="fa fa-refresh"></i> 刷新
 										</button>
@@ -227,9 +231,11 @@
 								class="table table-bordered table-striped table-hover dataTable">
 								<thead>
 									<tr>
-										<th class="" style="padding-right: 0px;"><input
-											id="selall" type="checkbox" class="icheckbox_square-blue">
+										<security:authorize access="hasRole('ADMIN')">
+										<th class="" style="padding-right: 0px;">
+											<input  id="selall" type="checkbox" class="icheckbox_square-blue">
 										</th>
+										</security:authorize>
 										<th class="sorting_asc">ID</th>
 										<th class="sorting_desc">订单编号</th>
 										<th class="sorting_asc sorting_asc_disabled">产品名称</th>
@@ -245,7 +251,9 @@
 									<c:forEach items="${pageBeanList.list}" var="orders">
 
 										<tr>
+											<security:authorize access="hasRole('ADMIN')">
 											<td><input name="ids" type="checkbox"></td>
+											</security:authorize>
 											<td>${orders.id }</td>
 											<td>${orders.orderNum }</td>
 											<td>${orders.product.productName }</td>

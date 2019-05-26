@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -108,10 +109,11 @@
 							<div class="pull-left">
 								<div class="form-group form-inline">
 									<div class="btn-group">
+										<security:authorize access="hasRole('ADMIN')">
 										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/permission-add.jsp'">
 											<i class="fa fa-file-o"></i> 新建
 										</button>
-										
+										</security:authorize>
 										<button type="button" class="btn btn-default" title="刷新">
 											<i class="fa fa-refresh"></i> 刷新
 										</button>
@@ -132,9 +134,11 @@
 								class="table table-bordered table-striped table-hover dataTable">
 								<thead>
 									<tr>
+										<security:authorize access="hasRole('ADMIN')">
 										<th class="" style="padding-right: 0px"><input
 											id="selall" type="checkbox" class="icheckbox_square-blue">
 										</th>
+										</security:authorize>
 										<th class="sorting_asc">ID</th>
 										<th class="sorting_desc">权限名称</th>
 										<th class="sorting_asc sorting_asc_disabled">URL</th>
@@ -145,7 +149,9 @@
 
 									<c:forEach items="${permissionList}" var="permission">
 										<tr>
+											<security:authorize access="hasRole('ADMIN')">
 											<td><input name="ids" type="checkbox"></td>
+											</security:authorize>
 											<td>${permission.id }</td>
 											<td>${permission.permissionName }</td>
 											<td>${permission.url }</td>
@@ -167,7 +173,7 @@
 					<!-- /.box-body -->
 
 					<!-- .box-footer-->
-					<div class="box-footer">
+					<%--<div class="box-footer">
 						<div class="pull-left">
 							<div class="form-group form-inline">
 								总共2 页，共14 条数据。 每页 <select class="form-control">
@@ -194,7 +200,7 @@
 							</ul>
 						</div>
 
-					</div>
+					</div>--%>
 					<!-- /.box-footer-->
 
 				</div>
